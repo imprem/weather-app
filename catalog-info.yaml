@@ -1,8 +1,10 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: "weather-app"
+  name: weather-app
 spec:
   type: service
-  owner: user:guest
+  owner: guests
   lifecycle: experimental
+  system: test-app
+  apiConsumedBy: ['component:react-app1']
