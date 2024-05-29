@@ -1,0 +1,216 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is the OpenWeatherMap API for current weather data.",
+      "version": "1.0.0",
+      "title": "OpenWeatherMap Current Weather Data API",
+      "contact": {
+        "email": "support@openweathermap.org"
+      },
+      "license": {
+        "name": "Creative Commons Attribution-ShareAlike 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    "host": "api.openweathermap.org",
+    "basePath": "/data/2.5",
+    "schemes": [
+      "https"
+    ],
+    "paths": {
+      "/weather": {
+        "get": {
+          "summary": "Get current weather data",
+          "description": "Fetches current weather data for a specified city.",
+          "operationId": "getCurrentWeather",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "description": "City name",
+              "required": true,
+              "type": "string",
+              "example": "London"
+            },
+            {
+              "name": "appid",
+              "in": "query",
+              "description": "Your unique API key",
+              "required": true,
+              "type": "string",
+              "example": "9053b61501b841aa240f60b301be5e07"
+            },
+            {
+              "name": "units",
+              "in": "query",
+              "description": "Units of measurement. 'metric' for Celsius.",
+              "required": false,
+              "type": "string",
+              "enum": [
+                "standard",
+                "metric",
+                "imperial"
+              ],
+              "default": "metric"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "schema": {
+                "$ref": "#/definitions/WeatherResponse"
+              }
+            },
+            "401": {
+              "description": "Invalid API key"
+            },
+            "404": {
+              "description": "City not found"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "WeatherResponse": {
+        "type": "object",
+        "properties": {
+          "coord": {
+            "$ref": "#/definitions/Coordinates"
+          },
+          "weather": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Weather"
+            }
+          },
+          "base": {
+            "type": "string"
+          },
+          "main": {
+            "$ref": "#/definitions/Main"
+          },
+          "visibility": {
+            "type": "integer"
+          },
+          "wind": {
+            "$ref": "#/definitions/Wind"
+          },
+          "clouds": {
+            "$ref": "#/definitions/Clouds"
+          },
+          "dt": {
+            "type": "integer"
+          },
+          "sys": {
+            "$ref": "#/definitions/Sys"
+          },
+          "timezone": {
+            "type": "integer"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "cod": {
+            "type": "integer"
+          }
+        }
+      },
+      "Coordinates": {
+        "type": "object",
+        "properties": {
+          "lon": {
+            "type": "number"
+          },
+          "lat": {
+            "type": "number"
+          }
+        }
+      },
+      "Weather": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "main": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          }
+        }
+      },
+      "Main": {
+        "type": "object",
+        "properties": {
+          "temp": {
+            "type": "number"
+          },
+          "feels_like": {
+            "type": "number"
+          },
+          "temp_min": {
+            "type": "number"
+          },
+          "temp_max": {
+            "type": "number"
+          },
+          "pressure": {
+            "type": "integer"
+          },
+          "humidity": {
+            "type": "integer"
+          }
+        }
+      },
+      "Wind": {
+        "type": "object",
+        "properties": {
+          "speed": {
+            "type": "number"
+          },
+          "deg": {
+            "type": "integer"
+          }
+        }
+      },
+      "Clouds": {
+        "type": "object",
+        "properties": {
+          "all": {
+            "type": "integer"
+          }
+        }
+      },
+      "Sys": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "country": {
+            "type": "string"
+          },
+          "sunrise": {
+            "type": "integer"
+          },
+          "sunset": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
