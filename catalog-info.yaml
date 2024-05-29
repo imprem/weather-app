@@ -8,3 +8,18 @@ spec:
   lifecycle: experimental
   system: test-app
   apiConsumedBy: ['component:react-app1']
+  providesApis:
+    - weather-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: weather-api
+  description: Get the weather details based on your city
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: user:guest
+  definition:
+    $text: https://github.com/Sada-r/tokenBalance/blob/master/tier2-supplier-api-swagger.json
+has context menu
