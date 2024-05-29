@@ -7,7 +7,6 @@ spec:
   owner: guests
   lifecycle: experimental
   system: test-app
-  apiConsumedBy: ['component:react-app1']
   providesApis:
     - weather-api
 ---
@@ -21,4 +20,4 @@ spec:
   lifecycle: experimental
   owner: user:guest
   definition:
-    $text: https://github.com/Sada-r/tokenBalance/blob/master/tier2-supplier-api-swagger.json
+    $text: https://github.com/imprem/weather-app/blob/master/weather-app-api-swagger.json
